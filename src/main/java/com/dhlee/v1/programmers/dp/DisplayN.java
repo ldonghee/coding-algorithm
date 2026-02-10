@@ -17,7 +17,7 @@ public class DisplayN {
 
         // 1. DP 리스트 초기화 (0번 인덱스는 사용 안 함, 1~8번 사용)
         List<Set<Integer>> dp = new ArrayList<>();
-        for (int i=0; i<8; i++) {
+        for (int i=0; i<=8; i++) {
             dp.add(new HashSet<>());
         }
 
