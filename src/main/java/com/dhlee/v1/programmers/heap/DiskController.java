@@ -1,4 +1,4 @@
-package com.dhlee.v1.heap;
+package com.dhlee.v1.programmers.heap;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
