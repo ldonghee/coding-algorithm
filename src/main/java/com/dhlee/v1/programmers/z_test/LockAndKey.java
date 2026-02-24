@@ -12,16 +12,23 @@ public class LockAndKey {
         int size = n * 3;
         int[][] board = new int[size][size];
 
-        // 2. 4방향 회전하며 체크(90도)
+        // 2. 확장된 지도 중앙에 실제 자물쇠를 배치
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i + n][j + n] = lock[i][j];
+            }
+        }
+
+        // 3. 4방향 회전하며 체크(90도)
         for (int rotate = 0; rotate < 4; rotate++) {
             // 90도 회전
             key = getRotate(key);
 
-            // 3. 확장된 맵의 모든 시작점을 순회 (0 부터 n*2 까지)
+            // 4. 확장된 맵의 모든 시작점을 순회 (0 부터 n*2 까지)
             for (int x = 0; x < n * 2; x++) {
                 for (int y = 0; y < n * 2; y++) {
                     // 자물쇠에 열쇠 끼어 넣기
-                    addKey(board, key, lock, x, y);
+                    addKey(board, key, x, y);
 
                     // 자물쇠가 열리는지 체크
                     if (check(board, n)) {
@@ -29,7 +36,7 @@ public class LockAndKey {
                     }
 
                     // 열쇠 다시 빼기 (원상복구)
-                    removeKey(board, key, lock, x, y);
+                    removeKey(board, key, x, y);
                 }
             }
         }
@@ -51,17 +58,7 @@ public class LockAndKey {
     }
 
     // 지도에 열쇠 값을 더함
-    void addKey(int[][] board, int[][] key, int[][] lock, int x, int y) {
-        int n = lock.length;
-
-        // 초기화 및 자물쇠 중앙 배치
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                board[i + n][j + n] = lock[i][j];
-            }
-        }
-
-        // 열쇠 더하기
+    void addKey(int[][] board, int[][] key,  int x, int y) {
         for (int i = 0; i < key.length; i++) {
             for (int j = 0; j < key.length; j++) {
                 board[x + i][y + j] += key[i][j];
@@ -70,7 +67,7 @@ public class LockAndKey {
     }
 
     // 다시 빼기
-    void removeKey(int[][] board, int[][] key, int[][] lock, int x, int y) {
+    void removeKey(int[][] board, int[][] key, int x, int y) {
         for (int i = 0; i < key.length; i++) {
             for (int j = 0; j < key.length; j++) {
                 board[x + i][y + j] -= key[i][j];
