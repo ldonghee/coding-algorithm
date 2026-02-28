@@ -18,21 +18,16 @@ public class GoToTheSchool {
 
         for (int i=1; i<=n; i++) {
             for (int j=1; j<=m; j++) {
+                if (i == 1 && j == 1) {
+                    continue;
+                }
+
                 if (dp[i][j] == -1) {
                     dp[i][j] = 0;
                     continue;
                 }
 
-                // 이전 칸이 웅덩이였다면 위에서 0으로 바꿨기 때문에 안전하게 더해짐
-                // 위쪽에서 오는 경로 더하기
-                if (i > 1) {
-                    dp[i][j] = (dp[i][j] + dp[i-1][j]) % MOD;
-                }
-
-                // 왼쪽에서 오는 경로 더하기
-                if (j > 1) {
-                    dp[i][j] = (dp[i][j] + dp[i][j-1]) % MOD;
-                }
+                dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % MOD;
             }
         }
 
