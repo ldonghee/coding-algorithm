@@ -15,6 +15,7 @@ class HopscotchTest {
         };
 
         Assertions.assertEquals(16, hopscotch.solution(land));
+        Assertions.assertEquals(16, hopscotch.solution2(land));
     }
 
     @Test
@@ -27,6 +28,6 @@ class HopscotchTest {
         };
 
         Assertions.assertEquals(72, hopscotch.solution(land));
+        Assertions.assertEquals(72, hopscotch.solution2(land));
     }
-
 }
