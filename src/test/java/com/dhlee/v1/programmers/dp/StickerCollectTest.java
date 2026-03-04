@@ -1,4 +1,4 @@
-package com.dhlee.v1.programmers.z_test;
+package com.dhlee.v1.programmers.dp;
 
 import org.junit.jupiter.api.Test;
 
